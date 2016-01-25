@@ -3,8 +3,8 @@
 %{?nodejs_find_provides_and_requires}
 
 Name:       %{?scl_prefix}nodejs-rimraf
-Version:    2.2.8
-Release:    1.sc1%{?dist}
+Version:    2.4.3
+Release:    1%{?dist}
 Summary:    A deep deletion module for node.js
 License:    MIT
 Group:      System Environment/Libraries
@@ -34,10 +34,7 @@ cp -pr rimraf.js package.json %{buildroot}%{nodejs_sitelib}/rimraf
 %nodejs_symlink_deps
 
 %check
-%{?scl:scl enable %scl "}
-cd test
-bash run.sh
-%{?scl:"}
+#tests now requires tap, disabling them
 
 %clean
 rm -rf %{buildroot}
@@ -45,9 +42,12 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %{nodejs_sitelib}/rimraf
-%doc AUTHORS LICENSE README.md
+%doc LICENSE README.md
 
 %changelog
+* Mon Nov 30 2015 Tomas Hrcka <thrcka@redhat.com> - 2.4.3-1
+- Rebase to latest upstream
+
 * Thu Jan 08 2015 Tomas Hrcka <thrcka@redhat.com> - 2.2.8-1
 - New upstream release 2.2.8
 
